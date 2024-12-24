@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+class node
+{
+public:
+    int data;
+    node* next;
+    node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+void Traverse(node* &head,node* &temp)
+{
+    temp=head;
+    cout<<endl<<"[";
+    while(temp!=NULL)
+    {
+        cout<<temp->data;
+        temp=temp->next;
+        if(temp!=NULL){cout<<",";}
+    }
+
+    cout<<"]"<<endl;
+}
+
+void Last_Insert(node* &head,node* &temp,node* &n)
+{
+    int num,c;
+    cout<<"Number of element:";
+    cin>>c;
+    for(int i=0; i<c; i++)
+    {
+        if(head==NULL)
+        {
+            cout<<"Enter a value:";
+            cin>>num;
+            head=new node(num);
+            temp=head;
+        }
+        else
+        {
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            cout<<"Enter a value:";
+            cin>>num;
+            n=new node(num);
+            temp->next=n;
+        }
+    }
+}
+
+node* dublicate_Revoval(node* head){
+    node* temp=head;
+    while(temp->next!=nullptr){
+        if(temp->data==temp->next->data)
+        {
+            node* dublicate=temp->next;
+            temp->next=dublicate->next;
+        }
+        else
+        temp=temp->next;
+    }
+    return head;
+}
+
+int main()
+{
+    node* list1=NULL;
+    node* list;
+    node *temp=NULL,*n;
+    Last_Insert(list1,temp,n);
+    list=dublicate_Revoval(list1);
+    Traverse(list,temp);
+    return 0;
+}
