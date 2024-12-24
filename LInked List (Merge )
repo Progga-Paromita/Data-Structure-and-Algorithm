@@ -1,0 +1,117 @@
+#include <iostream>
+using namespace std;
+
+class node
+{
+public:
+    int data;
+    node* next;
+    node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+void Traverse(node* &head,node* &temp)
+{
+    temp=head;
+    cout<<endl<<"[";
+    while(temp!=NULL)
+    {
+        cout<<temp->data;
+        temp=temp->next;
+        if(temp!=NULL){cout<<",";}
+    }
+
+    cout<<"]"<<endl;
+}
+
+void Last_Insert(node* &head,node* &temp,node* &n)
+{
+    int num;
+    for(int i=0; i<3; i++)
+    {
+        if(head==NULL)
+        {
+            cout<<"Enter a value:";
+            cin>>num;
+            head=new node(num);
+            temp=head;
+        }
+        else
+        {
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            cout<<"Enter a value:";
+            cin>>num;
+            n=new node(num);
+            temp->next=n;
+        }
+    }
+}
+
+node* merge(node* &head1, node* &head2)
+{
+    node* head=nullptr,*temp;
+    node* temp1=head1;
+    node *temp2=head2;
+    while(temp1!= nullptr &&  temp2!= nullptr)
+    {
+        if(temp1->data<temp2->data)
+        {
+            if(head==nullptr)
+        {
+        head=temp1;
+        temp=temp1;
+        }
+        else{
+        temp->next=temp1;
+        temp=temp1;
+        }
+        temp1=temp1->next;
+        }
+
+        else{
+            if(head==nullptr)
+        {
+        head=temp2;
+        temp=temp2;
+        }
+        else{
+        temp->next=temp2;
+        temp=temp2;
+        }
+
+        temp2=temp2->next;
+        }
+    }
+    if (temp1 != nullptr) {
+        if (head == nullptr) {
+            head = temp1;
+        } else {
+            temp->next = temp1;
+        }
+    }
+    if (temp2 != nullptr) {
+        if (head == nullptr) {
+            head = temp2;
+        } else {
+            temp->next = temp2;
+        }
+    }
+    return head;
+}
+int main()
+{
+    node* list1=NULL;
+    node* list2=NULL;
+    node* list;
+    node *temp=NULL,*n;
+    Last_Insert(list1,temp,n);
+    Last_Insert(list2,temp,n);
+    list=merge(list1,list2);
+    Traverse(list,temp);
+    return 0;
+}
