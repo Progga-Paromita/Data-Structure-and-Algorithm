@@ -2,57 +2,14 @@ YouTube: https://youtu.be/CE150x4w0bo?si=U3PvN3QTgYplgHWj
 
 
 
-//Add a elemnt in the first of a list
-
-#include<iostream>
-using namespace std;
-class node
-{
-public:
-    int data;
-    node* next;
-    node(int val)
-    {
-        data=val;
-        next=NULL;
-    }
-};
-int main()
-{
-    int arr[4]= {1,2,3,4};
-    node* head=NULL;
-    node* temp,*tail=NULL;
-    //Add first
-    for(int i=0; i<4; i++)
-    {
-        if(head==NULL)
-        {
-            head=new node(arr[i]);
-        }
-        else
-        {
-            temp=new node(arr[i]);
-            temp->next=head;
-            head=temp;
-        }
-    }
-    for(int i=0;i<4;i++)
-    {
-        while(temp!=NULL)
-        {
-            cout<<temp->data<<" ";
-            temp=temp->next;
-        }
-    }
-    cout<<endl;
-}
 
 
 
+//Singly linked list
 
-//Add a element in last of a linked list
 
-#include<iostream>
+
+#include <iostream>
 using namespace std;
 
 class node
@@ -67,56 +24,222 @@ public:
     }
 };
 
-    //Add last
-int main()
+void Traverse(node* &head,node* &temp)
 {
-    int arr[4]= {1,2,3,4};
-    node* head=NULL;
-    node* temp=NULL,*tail=NULL;
-    for(int i=0; i<4; i++)
+    temp=head;
+    cout<<endl<<"The values of the linked list:";
+    while(temp!=NULL)
+    {
+        cout<<temp->data;
+        temp=temp->next;
+        if(temp!=NULL){cout<<",";}
+    }
+
+    cout<<endl<<endl;
+}
+
+void First_Insert(node* &head,node* &temp,node* &n)
+{
+    int num,c;
+    cout<<"How many number you want to enter:";
+    cin>>c;
+    for(int i=0; i<c; i++)
     {
         if(head==NULL)
         {
-            head=new node(arr[i]);
-            tail=head;
+            cout<<"Enter a value:";
+            cin>>num;
+            head=new node(num);
         }
         else
         {
-
-            tail->next=new node(arr[i]);
-            tail=tail->next;
-
+            cout<<"Enter a value:";
+            cin>>num;
+            n=new node(num);
+            n->next=head;
+            head=n;
         }
     }
-   temp=head;
-        while(temp!=NULL)
+}
+
+void Last_Insert(node* &head,node* &temp,node* &n)
+{
+    int num,c;
+    cout<<"How many number you want to enter:";
+    cin>>c;
+    for(int i=0; i<c; i++)
+    {
+        if(head==NULL)
         {
-            cout<<temp->data<<" ";
-            temp=temp->next;
+            cout<<"Enter a value:";
+            cin>>num;
+            head=new node(num);
+            temp=head;
         }
-        cout<<endl;
+        else
+        {
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            cout<<"Enter a value:";
+            cin>>num;
+            n=new node(num);
+            temp->next=n;
+        }
+    }
+}
+
+
+void Insert_Before(node* &head,node* &temp,node* &n)
+{
+    node* curr,*prev;
+    int val,num;
+    cout<<"Enter the value:";
+    cin>>val;
+    curr=head;
+    while(curr->data!=val)
+    {
+        prev=curr;
+        curr=curr->next;
+    }
+    cout<<"Enter the value you want store:";
+    cin>>num;
+    n=new node(num);
+    prev->next=n;
+    n->next=curr;
+}
+
+void Insert_After(node* &head,node* &temp,node* &n)
+{
+    node* curr,*after;
+    int val,num;
+    cout<<"Enter the value:";
+    cin>>val;
+    curr=head;
+    after=head->next;
+    while(curr->data!=val)
+    {
+        curr=curr->next;
+        after=after->next;
+    }
+    cout<<"Enter the value you want store:";
+    cin>>num;
+    n=new node(num);
+    curr->next=n;
+    n->next=after;
+}
+
+void First_Delete(node* &head,node* &temp,node* &n)
+{
+    head=head->next;
+}
+
+void Last_Delete(node* &head,node* &temp,node* &n)
+{
+    n=head;
+    while(n->next!=NULL)
+    {
+        temp=n;
+        n=n->next;
+    }
+    temp->next=NULL;
+}
+
+void Delete_Before(node* &head,node* &temp,node* &n)
+{
+    node* curr,*prev,*dprev;
+    int val,num;
+    cout<<"Enter the value:";
+    cin>>val;
+    curr=head;
+    while(curr->data!=val)
+    {
+        dprev=prev;
+        prev=curr;
+        curr=curr->next;
+    }
+    dprev->next=curr;
+}
+
+void Delete_After(node* &head,node* &temp,node* &n)
+{
+    node* curr,*dnext;
+    int val,num;
+    cout<<"Enter the value:";
+    cin>>val;
+    curr=head;
+    dnext=head->next;
+    while(curr->data!=val)
+    {
+        curr=curr->next;
+        dnext=dnext->next;
+    }
+    dnext=dnext->next;
+    curr->next=dnext;
+}
+
+int main()
+{
+    node* head=NULL;
+    node *temp=NULL,*n;
+    int option;
+    do
+    {
+        cout<<"YOU HAVE THE BELOW OPTION TO CHOOSE:"<<endl;
+        cout<<"1.Traverse."<<endl;
+        cout<<"2.First insert."<<endl;
+        cout<<"3.Last insert."<<endl;
+        cout<<"4.Insert before a given value."<<endl;
+        cout<<"5.Insert after a given value."<<endl;
+        cout<<"6.First delete."<<endl;
+        cout<<"7.Last delete."<<endl;
+        cout<<"8.Delete before a given value ."<<endl;
+        cout<<"9.Delete after a given value."<<endl;
+        cout<<"10.Exit."<<endl;
+        cout<<"Enter any option:";
+        cin>>option;
+        switch(option)
+        {
+        case 1:Traverse(head,temp);
+            break;
+        case 2:
+            First_Insert(head,temp,n);
+            break;
+        case 3:
+            Last_Insert(head,temp,n);
+            break;
+        case 4:
+            Insert_Before(head,temp,n);
+            break;
+        case 5:
+            Insert_After(head,temp,n);
+            break;
+        case 6:
+            First_Delete(head,temp,n);
+            break;
+        case 7:
+            Last_Delete(head,temp,n);
+            break;
+        case 8:
+            Delete_Before(head,temp,n);
+            break;
+        case 9:
+            Delete_After(head,temp,n);
+            break;
+        case 10:
+            exit(0);
+        default:
+            cout<<"Invalid opton."<<endl;
+        }
+    }
+    while(option!=10);
+    return 0;
 }
 
 
 
-
-
-//Add a element before a given value
-
-
-
-
-
-
-
-
-
-
-
-//Delete first element
-
-
-
+    
 
 
 
