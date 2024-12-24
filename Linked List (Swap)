@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+class node
+{
+public:
+    int data;
+    node * next;
+    node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+
+void Traverse(node* &head,node* &temp)
+{
+    temp=head;
+    if(head==NULL)
+    {
+        cout<<"[]"<<endl;
+        exit(0);
+    }
+    cout<<endl<<"[";
+    while(temp!=NULL)
+    {
+        cout<<temp->data;
+        temp=temp->next;
+        if(temp!=NULL){cout<<",";}
+    }
+
+
+    cout<<"]"<<endl;
+}
+
+
+void Insert(node* &head,node* &temp,node* &n)
+{
+    int num,c;
+    cout<<"How many number you want to enter:";
+    cin>>c;
+    for(int i=0; i<c; i++)
+    {
+        if(head==NULL)
+        {
+            cout<<"Enter a value:";
+            cin>>num;
+            head=new node(num);
+            temp=head;
+        }
+        else
+        {
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            cout<<"Enter a value:";
+            cin>>num;
+            n=new node(num);
+            temp->next=n;
+        }
+    }
+}
+
+void swap(node* head,node* temp)
+{
+    node* curr=head;
+   while(curr->next!=NULL&&head!=NULL)
+    {
+        int p=curr->data;
+        curr->data=curr->next->data;
+        curr->next->data=p;
+        curr=curr->next;
+        curr=curr->next;
+    }
+}
+
+int main()
+{
+    node* head=NULL;
+    node *temp=NULL,*n;
+    Insert(head,temp,n);
+    Traverse(head,temp);
+    swap(head,temp);
+    Traverse(head,temp);
+    return 0;
+}
