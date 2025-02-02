@@ -1,0 +1,235 @@
+//Adjacency matrix
+//Undirected unweighted graph
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{
+    int vertex,edges;
+    cin>>vertex>>edges;
+
+    vector<vector<bool>>adj_Mat(vertex,vector<bool>(vertex,0));
+
+    int u,v;
+    for(int i=0;i<edges;i++)
+    {
+        cin>>u>>v;
+        adj_Mat[u][v]=1;
+        adj_Mat[v][u]=1;
+    }
+    for(int i=0;i<vertex;i++)
+    {
+        for(int j=0;j<vertex;j++)
+        {
+            cout<<adj_Mat[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+//Adjacency Martix
+//Undirected weighted graph
+
+#include<iostream>
+#include<vector>
+using namespace std
+int main()
+{
+    int vertex,edges;
+    cin>>vertex>>edges;
+
+    vector<vector<int> > adj_Mat(vertex, vector<int>(vertex));
+
+    int u,v,weight;
+    for(int i=0;i<edges;i++)
+    {
+        cin>>u>>v>>weight;
+        adj_Mat[u][v]=weight;
+        adj_Mat[v][u]=weight;
+    }
+
+    for(int i=0;i<vertex;i++)
+    {
+        for(int j=0;j<vertex;j++)
+        {
+            cout<<adj_Mat[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Adjacency Matrix
+//Directed graph
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{
+    int vertex,edges;
+    cin>>vertex>>edges;
+
+    vector<vector<bool>> adj_Mat(vertex,vector<bool>(vertex));
+
+    int u,v;
+    for(int i=0;i<edges;i++)
+    {
+        cin>>u>>v;
+        adj_Mat[u][v]=1;
+    }
+
+    for(int i=0;i<vertex;i++)
+    {
+        for(int j=0;j<vertex;j++)
+        {
+            cout<<adj_Mat[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+//Adjacency List
+//Undirected Unweighted graph
+
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+int main()
+{
+    int vertex,edges;
+    cin>>vertex>>edges;
+
+    vector<int> Adj_List[vertex];
+
+    int u,v;
+    for(int i=0;i<edges;i++)
+    {
+        cin>>u>>v;
+        Adj_List[u].push_back(v);
+        Adj_List[v].push_back(u);
+    }
+    for(int i=0;i<vertex;i++)
+    {
+        cout<<i<<"->";
+        for(int j=0;j<Adj_List[i].size();j++)
+        {
+            cout<<Adj_List[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//Undirected Weighted grapg
+//Adjacency List
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int  main()
+{
+    int vertex,edges;
+    cin>>vertex>>edges;
+
+    vector<pair<int,int>>Adj_list[vertex];
+
+    int u,v,weight;
+    for(int i=0;i<edges;i++)
+    {
+        cin>>u>>v>>weight;
+        Adj_list[u].push_back(make_pair(v,weight));
+        Adj_list[v].push_back(make_pair(u,weight));
+    }
+
+    for(int i=0;i<vertex;i++)
+    {
+        cout<<i<<"->";
+        for(int j=0;j<Adj_list[i].size();j++)
+        {
+            cout<<"("<<Adj_list[i][j].first<<","<<Adj_list[i][j].second<<"),";
+        }
+        cout<<endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
